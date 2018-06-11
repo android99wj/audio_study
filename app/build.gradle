@@ -16,13 +16,39 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    //添加 因 butterknife报错
+    defaultConfig{
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //添加 因annotations报错
+    androidTestCompile('com.android.support:support-annotations:25.4.0') {
+        force = true
+    }
+    implementation 'com.jakewharton:butterknife:5.1.1'
+
+    //RxJava扩展支持，根据需要添加
+    compile 'com.lzy.net:okrx:+'
+
+    //下载管理和上传管理扩展，根据需要添加
+    compile 'com.lzy.net:okserver:+'
+
+    //安卓6.0 7.0 新特性  metal风格弹窗
+    compile 'com.afollestad.material-dialogs:core:0.9.1.0'
 }
