@@ -21,6 +21,14 @@
       android:padding="10dp"
       android:text="VideoView"
       />
+  <Button
+      android:id="@+id/surface"
+      android:layout_width="match_parent"
+      android:layout_height="40dp"
+      android:layout_below="@id/videoview"
+      android:padding="10dp"
+      android:text="Surface+MediaPlayer"
+      />
 
   <VideoView
       android:id="@+id/wj_vv"

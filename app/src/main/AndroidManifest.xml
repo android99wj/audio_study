@@ -19,6 +19,7 @@
       </intent-filter>
     </activity>
     <activity android:name=".utils.ShadowActivity"/>
+    <activity android:name=".SurfaceActivity"/>
   </application>
 
 </manifest>

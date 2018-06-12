@@ -22,8 +22,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import rx.functions.Action1;
-import rx.observers.AssertableSubscriber;
-import rx.observers.SafeSubscriber;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
   Button    videoview;
   @InjectView(R.id.wj_vv)
   VideoView wjVv;
+  @InjectView(R.id.surface)
+  Button    surface;
 
   private Context context;
   //权限申请
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     copyMusicFile(assetsName, sdPath, sdName);
   }
 
-  @OnClick({ R.id.uri, R.id.videoview })
+  @OnClick({ R.id.uri, R.id.videoview, R.id.surface })
   public void onViewClicked(View view) {
     RxPermissions.getInstance(context)
         .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -69,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
                   break;
                 case R.id.videoview:
                   showByVideoView();
+                  break;
+                case R.id.surface:
+                  Intent intent = new Intent(context, SurfaceActivity.class);
+                  intent.putExtra("dataPath", sdName);
+                  startActivity(intent);
                   break;
               }
             } else {
